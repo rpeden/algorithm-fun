@@ -14,7 +14,7 @@ namespace Algorithms
         public int Size 
         {
             get { return _size; }
-        }
+        } 
 
         public void Push(T item)
         {
