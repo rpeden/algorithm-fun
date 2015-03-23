@@ -94,6 +94,21 @@ namespace Algorithms
             TestQueue<int>(testItems);
         }
 
+        [Test]
+        public void TestQueueReferenceTypes()
+        {
+            var testItems = new DateTime[] 
+            {
+                DateTime.Now,
+                DateTime.UtcNow,
+                DateTime.Now.AddDays(-10),
+                DateTime.Now.AddYears(-1000),
+                DateTime.Now.AddTicks(1000)
+            };
+
+            TestQueue<DateTime>(testItems);
+        }
+
         private void TestQueue<T>(T[] items)
         {
             dynamic queue = new LinkedQueue<T>();
