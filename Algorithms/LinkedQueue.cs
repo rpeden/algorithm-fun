@@ -64,7 +64,7 @@ namespace Algorithms
             return head.Data;          
         }
 
-        private bool IsEmpty()
+        public bool IsEmpty()
         {
             return _length == 0;
         }
@@ -126,6 +126,7 @@ namespace Algorithms
             }
 
             Assert.AreEqual(0, queue.Length);
+            Assert.AreEqual(default(T), queue.Dequeue());
         }
     }
 }
