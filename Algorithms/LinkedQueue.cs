@@ -10,6 +10,64 @@ namespace Algorithms
     //Queue backed by a linked list
     public class LinkedQueue<T>
     {
+        private Node _first;
+        private Node _last;
+        private int _length = 0;
+        public int Length 
+        {
+            get 
+            {
+                return _length;
+            }
+        }
+
+        private class Node
+        {
+            public T Data { get; set; }
+            public Node Next { get; set; }
+        }
+
+        public void Enqueue(T item)
+        {
+            var newNode = new Node {
+                Data = item,
+                Next = null
+            };
+
+            if(IsEmpty())
+            {
+                _first = newNode;
+                _last = newNode;
+            }
+            else
+            {
+                _last.Next = newNode;
+                _last = newNode;
+            }
+            _length++;
+        }
+
+        public T Dequeue()
+        {
+            if (IsEmpty()) return default(T);
+            var head = _first;
+            if(head.Next == null)
+            {
+                _first = null;
+                _last = null;
+            } 
+            else
+            {
+                _first = head.Next;
+            }
+            _length--;
+            return head.Data;          
+        }
+
+        private bool IsEmpty()
+        {
+            return _length == 0;
+        }
     }
 
     [TestFixture]
@@ -49,7 +107,7 @@ namespace Algorithms
 
             foreach(var item in items)
             {
-                Assert.AreEqual(item, queue.Dequeue);
+                Assert.AreEqual(item, queue.Dequeue());
             }
 
             Assert.AreEqual(0, queue.Length);
